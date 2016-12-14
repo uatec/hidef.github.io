@@ -1,7 +1,7 @@
 ---
 title: Management as Multithreading - Part 2
-author: Robert Stiff
 date: 2016-11-03
+tags: ["management", "agile", "multithreading"]
 layout: post
 ---
 [Previously](/2016/11/02/management-as-multithreading) I wrote about how management of a team and multiple work flows can be viewed as similar to the multithreading problem in software development. I also explored some key multithreading concepts and compared them to work management.

@@ -1,7 +1,7 @@
 ---
 title: Management As Multithreading
-author: Robert Stiff
 date: 2016-11-02
+tags: ["management", "agile", "multithreading"]
 layout: post
 ---
 > What if developers and managers can be models using the same concepts as in multi-threaded software.
