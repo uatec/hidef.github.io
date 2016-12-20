@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About this HiDef Software
+title: About HiDef Software
 <!--banner_image: aboutPage.jpg-->
 ---
 <h2>Who am I?</h2>
