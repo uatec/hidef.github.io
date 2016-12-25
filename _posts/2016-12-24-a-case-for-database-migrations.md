@@ -2,7 +2,7 @@
 title: "A Case for Database Migrations?"
 author: Robert Stiff
 layout: post
-tags: ["databases", "SQL", "Software Development"
+tags: ["databases", "SQL", "Software Development"]
 date: 2016-12-24
 ---
 
@@ -11,6 +11,8 @@ date: 2016-12-24
 Migration is about getting from one place to another. Database migrations are about getting our database from one state to another. As we maintain and develop a database application we will want to add and remove new tables and columns, create new stored procedures and modify reference data.
 
 SQL database engines facilitate all of these operations with imperative statements so when playing with the database in your Dec environment we issue a series of these statements to get the database in to the state we want. When we're happy that we know what we want, we write all of these statements down together (either directly in SQL or using a DSL like ruby or asp migrations) and declare them as a migration from the previous state to the new.
+
+<!--more-->
 
 ## Why do we use them?
 
