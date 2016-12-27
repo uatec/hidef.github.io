@@ -46,6 +46,9 @@ layout: default
                     </div><!-- .author-details -->
                 </div><!-- .author-info -->
             </div><!-- .author-box -->
+            {% if site.disqus %}
+                {% include disqus.html %}
+            {% endif %}
             <nav class="post-navigation">
                 <h2 class="screen-reader-text">Post navigation</h2>
                 {% if page.previous.url %}
@@ -73,9 +76,6 @@ layout: default
                 </div><!-- .nav-next -->
                 {% endif %}
             </nav><!-- .post-navigation -->
-            {% if site.disqus %}
-                {% include disqus.html %}
-            {% endif %}
         </main><!-- .site-main -->
         {% include sidebar.html %}
     </div><!-- .inner -->
