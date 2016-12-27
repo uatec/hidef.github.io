@@ -1,5 +1,5 @@
 ---
-title: "A Case for Database Migrations?"
+title: "Can we do better than database migrations?"
 author: Robert Stiff
 layout: post
 tags: ["databases", "SQL", "Software Development"]
