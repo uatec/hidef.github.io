@@ -14,7 +14,7 @@ date: 2016-12-25
 
 To make sure we're on the same page, when I say *caching*, I am talking about the practice of speeding up your own application by masking slow dependencies by remembering previous responses and using them instead of making another slow call to the dependency.
 
-As mentioned breifly by Phil Carlton in his well known sound byte, caching is a tricky problem. This is compounded by a number of common mistakes which I have seen over the years which have resulted in unnecessary confusion delay.
+As mentioned breifly by Phil Karlton in his well known sound byte, caching is a tricky problem. This is compounded by a number of common mistakes which I have seen over the years which have resulted in unnecessary confusion delay.
 
 ## Common Mistakes
 
@@ -60,26 +60,35 @@ Other implementations, such as hand cranks in memory caches or even caches provi
 
 I have seen releases that have taken hours longer than necessary while different members of the team tried to track down cache after cache, flush them with a restart or wait for expiry before moving on to the next layer. All the time with a system taken offline because the system cannot be said to be consist within itself.
 
-### Local Copies
+## The implications
 
-## Why they matter
-The implications
-Changes take X time to become visible
-Development requires continual cache flushing
-Cache flushing can be an hours long process
-You can't guarantee the state of all assets.
-Creates a need for workarounds like cache busters. Should you really need to learn how to work around a feature of your service?
+Caching data has implications which these mistakes can accentuate as well as new issues we didn't have to think of before.
+
+Deploying to a heavily cached system can be extremely time consuming while you wait for caches to expire or have to bust every cache you can find. Even in systems such as some CDNs I have worked with which serve traffic to tens of percent of the Internet and are thought to be the leaders in content delivery, flushing content and configuration caches globally can take up to two hours. This doesn't need to be the case ([Fastly](https://www.fastly.com/products/instant-purging) can purge their cache in 150ms), and it results in confusion (is the new data being served yet?).
+
+The natural response is to come up with a workaround, usually some of of cache busting. Let's just think about that. A work around for a feature that you just implemented. Think about that, time, effort and cognitive load just to compensate for time, effort and cognitive load you just spent on caching in the first place.
+
+Debugging a cached system also becomes a challenge as being up to your neck in a tricky debugging session will end up with unrelated things being missed or forgotten about. 3 hours of confusion later you realise that you haven't actually been testing any of the changes you have been making.
+
 ## What we should do instead
-### Serve on Stale
-### Write through Cache
-### Read through Cache
-### Honour HTTP headers
 
-Never cache
-Edge cache
-Lookup instead of cache. Make data first class.
+### Don't cache!
+
+Okay, sometimes caching is your only option. You're on the web and it's happening whether you like it or not. But even in this case there are options other than a simply slapping on '''Cache-Control: max-age=xxx'''. 
+
+### Know your data
+
+You should know when your data was last modified at the very least. Now you can make use of the '''If-Modified-Since''' header. Return 304-not-modified if the data hasn't changed. Now you can intelligently utilise the the client's caching capability without sacrificing visibility and control. Using this header will let you serve new content instantly and also cache indefinitely. The best of both worlds.
+
+### Optimise for performance, don't hide bad performance
+
+Invest in profiler tooling. Find out why your application is slow and fix it. Reduce duplicate execution paths. Sort out bad query execution plans. Utilise indexes properly. If you're using S3 or blob storage for your data you can always build your own index using Redis or the like. Redis is more than a cache. You can use it intelligently and get many benefits without the problems introduced by caching.
 
 ## Finale
+
+Caching is a useful tool, but can be easily abused without giving any signs of the abuse.
+
+Don't get involved with caching till the last minute. Find any other way you can first.
 
 If you've come across any fundamental problems caused by caching and bad discipline there of, let me know and I can add them to the list.
 
