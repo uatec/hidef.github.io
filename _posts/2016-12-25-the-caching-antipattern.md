@@ -6,6 +6,10 @@ tags: ["caching", "Software Development"]
 date: 2016-12-25
 ---
 
+TL;DR - Caching done badly has bad implications. Try your hardest not to cache data; but if you really do have to, make sure you do it right.
+
+***
+
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 > 
 > -- Phil Karlton
@@ -74,11 +78,11 @@ Debugging a cached system also becomes a challenge as being up to your neck in a
 
 ### Don't cache!
 
-Okay, sometimes caching is your only option. You're on the web and it's happening whether you like it or not. But even in this case there are options other than a simply slapping on '''Cache-Control: max-age=xxx'''. 
+Okay, sometimes caching is your only option. You're on the web and it's happening whether you like it or not. But even in this case there are options other than a simply slapping on ```Cache-Control: max-age=xxx```. 
 
 ### Know your data
 
-You should know when your data was last modified at the very least. Now you can make use of the '''If-Modified-Since''' header. Return 304-not-modified if the data hasn't changed. Now you can intelligently utilise the the client's caching capability without sacrificing visibility and control. Using this header will let you serve new content instantly and also cache indefinitely. The best of both worlds.
+You should know when your data was last modified at the very least. Now you can make use of the ```If-Modified-Since``` header. Return 304-not-modified if the data hasn't changed. Now you can intelligently utilise the the client's caching capability without sacrificing visibility and control. Using this header will let you serve new content instantly and also cache indefinitely. The best of both worlds. Taking it one step further, if you're able to version you data (or just generate a hash of your response), you can make use of [etags](https://en.wikipedia.org/wiki/HTTP_ETag) and still interact with the client and apply appropriate logic without the latency related to data transfer.
 
 ### Optimise for performance, don't hide bad performance
 
@@ -88,7 +92,7 @@ Invest in profiler tooling. Find out why your application is slow and fix it. Re
 
 Caching is a useful tool, but can be easily abused without giving any signs of the abuse.
 
-Don't get involved with caching till the last minute. Find any other way you can first.
+Don't get involved with caching till the last minute; find any other way you can first. Optimise your application before you use the blunt tool of caching.
 
 If you've come across any fundamental problems caused by caching and bad discipline there of, let me know and I can add them to the list.
 
