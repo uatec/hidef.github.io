@@ -6,6 +6,10 @@ tags: ["databases", "SQL", "Software Development"]
 date: 2016-12-24
 ---
 
+TL;DR - Database migrations are an antipattern, Model your database and generate diff scripts instead.
+
+***
+
 ## What are database migrations?
 
 Migration is about getting from one place to another. Database migrations are about getting our database from one state to another. As we maintain and develop a database application we will want to add and remove new tables and columns, create new stored procedures and modify reference data.
