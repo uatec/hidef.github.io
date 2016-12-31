@@ -8,13 +8,15 @@ title: HiDef Software Ltd
 
 > Build RESTful services really fast and get on with building your application.
 
+### [FortressCraft: Evolved](http://www.fortresscraft.com/)
+
+> FortressCraft for a new age. The original FortressCraft was written to get the best out of limited hardware on the XBox 360. FortressCraft: Evolved abandons that platform and pushes modern gaming PCs to their limit. Being on more open platform, FortressCraft: Evolved makes use of modern cloud logging and monitoring solutions, as well as custom build cloud infrastructure for multiplayer discovery and service provisioning.
+
 ## Past Projects
 
-### FortressCraft
+### [FortressCraft](http://www.fortresscraft.com/)
 
 > FortressCraft is a video game released on Xbox Live Indie Games on April 8, 2011. FortressCraft cites Minecraft, Infiniminer and Dwarf Fortress as direct inspirations for the design aspect of the game. The game utilizes textured voxels to simulate landscapes, traditionally reminiscent of other titles in the genre.
-
-### FortressCraft: Evolved
 
 ### Colour Jumper 2
 
