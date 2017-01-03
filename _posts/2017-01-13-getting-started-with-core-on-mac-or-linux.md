@@ -1,6 +1,6 @@
 ---
 title: Getting Started With .NET Core on Mac or Linux
-<!--date: 2017-01-03-->
+date: 2017-01-03
 tags: [".NET Core", "Mac", "Linux", "Visual Studio Code"]
 layout: post
 ---
