@@ -128,12 +128,24 @@ In `CoreBootstrapLibrary.Tests/project.json`:
         },
         ...
 
-## Running and Testing Locally
+We can run the tests using the `test` command:
 
     cd tests
     dotnet test
 
 ## Publishing Nuget Packages with AppVeyor
+
+There are many cloud CI services out there, and finding one which is right for you is like buying a new pair of shoes. However I don't think I need to explain the meaning of Agile, so I'm going to recommend that you dive in with [AppVeyor](https://www.appveyor.com/) and then you can change your mind later, if you see fit.
+
+AppVeyor has a nice interface for adding new projects, is configurable using an `appveyor.yml` file in the root of your project, supports .NET Core natively, and it's all round pretty good. It even has a free tier for public projects and is quite reasonably priced for private ones too, and mighty fine documentation to boot.
+
+Follow the [Documentation](https://www.appveyor.com/docs/) for how to set up a new project in AppVeyor, and you'll have it hooked up to your git repo in no time. Then we just need to get it configured.
+
+By default AppVeyor will discover traditional .Net solutions, build them and run tests. They're not that slick for .NET Core yet though.
+
+Dropping this script in the root of your repository will tell AppVeyor how to build, test and publish our project as a NuGet package.
+
+`appveyor.yml`
 
     version: 0.0.{build}
     build_script:
@@ -146,6 +158,8 @@ In `CoreBootstrapLibrary.Tests/project.json`:
         dotnet test CoreBootstrapLibrary.Tests
     artifacts:
     - path: '**/*.nupkg'
+
+The last bit of AppVeyor goodness is that any `*.nupkg` files published as artifacts (in this case, our library and it's symbols) are published to a private NuGet feed for your account. Access control is a bit of a blunt instrument, but for internal teams, or your own private projects, it's a great starting point.
 
 ## Consuming Private Nuget Packages
 
@@ -181,7 +195,12 @@ So in a new directory for a new project:
     > Console application
     CoreBootstrapApp
 
-Add the dependency for the NuGet package we created in `CoreBootstrapApp/project.json`:
+The new console application can by run using the `run` command:
+
+    cd CoreBootstrapApp
+    dotnet run
+
+Next we add the dependency for the NuGet package we created in `CoreBootstrapApp/project.json`:
 
     {
         ...
@@ -193,3 +212,9 @@ Add the dependency for the NuGet package we created in `CoreBootstrapApp/project
 And the rest is up to you. You can now write library code, publish it to a private NuGet feed using AppVeyor and consume it from your own application.
 
 Another time I will write about hosting your new .NET Core application in Docker courtesy of Heroku, and implementing a 12 Factor app using .NET Core.
+
+You can find the code for these example projects here:
+- [CoreBootstrapLibrary](https://github.com/hidef/CoreBootstrapLibrary)
+- [CoreBootstrapApp](https://github.com/hidef/CoreBootstrapApp)
+
+And CI for the Library over at [AppVeyor](https://ci.appveyor.com/project/uatec/corebootstraplibrary)
