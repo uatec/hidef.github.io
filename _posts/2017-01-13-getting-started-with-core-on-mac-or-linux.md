@@ -219,3 +219,4 @@ You can find the code for these example projects here:
 - [CoreBootstrapApp](https://github.com/hidef/CoreBootstrapApp)
 
 And CI for the Library over at [AppVeyor](https://ci.appveyor.com/project/uatec/corebootstraplibrary)
+
