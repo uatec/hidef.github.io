@@ -214,6 +214,7 @@ And the rest is up to you. You can now write library code, publish it to a priva
 Another time I will write about hosting your new .NET Core application in Docker courtesy of Heroku, and implementing a 12 Factor app using .NET Core.
 
 You can find the code for these example projects here:
+
 - [CoreBootstrapLibrary](https://github.com/hidef/CoreBootstrapLibrary)
 - [CoreBootstrapApp](https://github.com/hidef/CoreBootstrapApp)
 
