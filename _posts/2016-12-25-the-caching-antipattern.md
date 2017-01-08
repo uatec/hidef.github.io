@@ -18,7 +18,7 @@ TL;DR - Caching done badly has bad implications. Try your hardest not to cache d
 
 To make sure we're on the same page, when I say *caching*, I am talking about the practice of speeding up your own application by masking slow dependencies by remembering previous responses and using them instead of making another slow call to the dependency.
 
-As mentioned breifly by Phil Karlton in his well known sound byte, caching is a tricky problem. This is compounded by a number of common mistakes which I have seen over the years which have resulted in unnecessary confusion delay.
+As mentioned briefly by Phil Karlton in his well known sound byte, caching is a tricky problem. This is compounded by a number of common mistakes which I have seen over the years which have resulted in unnecessary confusion delay.
 
 ## Common Mistakes
 
@@ -36,13 +36,13 @@ And even if you are okay with having a service that is slow to start or restart 
 
 ### Caching too early
 
-I don't mean too early in the request lifecycle, I mean too early in the development cycle. Many times I have seen developers write code, decide that it is too slow, and stick cache in front of it. 
+I don't mean too early in the request life cycle, I mean too early in the development cycle. Many times I have seen developers write code, decide that it is too slow, and stick cache in front of it. 
 
 From that point on, the fact that their service is slow is hidden. There is no reason to optimise or improve the solution as the cache will ensure that the second request is much quicker; so why worry, right?
 
 ### Integrated Cache
 
-What's the S in SOLID? Single Responsibility. If your caching capability is integrated directly in to your service layer and you can't run without it you're definitely in breach of this principle. It's not my my place extoll the virtues of this principle here.
+What's the S in SOLID? Single Responsibility. If your caching capability is integrated directly in to your service layer and you can't run without it you're definitely in breach of this principle. It's not my my place extol the virtues of this principle here.
 
 ### Caching everything
 
