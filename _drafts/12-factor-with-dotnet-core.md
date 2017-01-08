@@ -11,10 +11,16 @@ Have seen multiple code bases built, and then bundled together in to a combined 
 
 Have seen the same code base being rebuilt for each environment to bake in different configuration.
 
+do not publish two projects or two services from the same code base
+
+(reference getting started in dotnet on mac) publish easily via nuget.
+
 ## II. Dependencies
 Explicitly declare and isolate dependencies
 
 project.json makes it clear. new csproj files?
+
+we get this very easily in dotnet core when references and dependencies are declared together
 
 ## III. Config
 Store config in the environment
@@ -28,6 +34,32 @@ ensure configuration changes restart the service?
 
 Use Consul client to reload configuration object and inject it via DI?
 No long lived components should ensure that new configuration becomes active quickly.
+
+    static public IConfigurationRoot Configuration { get; set; }
+    public static void Main(string[] args = null)
+    {
+        var builder = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            .AddEnvironmentVariables();
+        Configuration = builder.Build();
+
+        Console.WriteLine($"option1 = {Configuration["option1"]}");
+        Console.WriteLine($"option2 = {Configuration["option2"]}");
+        Console.WriteLine(
+            $"option1 = {Configuration["subsection:suboption1"]}");
+
+
+
+    }
+
+Options: If there are different config values defined in different places, you can take whichever one you want.
+Why? this makes individual bits of code confusing as they might or might not be overridable.
+Is this a config lazyloader? Get OptionsAccessor.Value to access configuration value?
+
+
+should always be overridable by environment variables.
 
 ## IV. Backing services
 Treat backing services as attached resources
@@ -128,5 +160,36 @@ Complex:
 
 ## XII. Admin processes
 Run admin/management tasks as one-off processes
+
+scripts like 
+    bundle install
+    bundle rake jekyll serve
+
+it means using single commandline entry points, not installing the service
+not hosting in another environment like IIS
+not requiring Visual Studio to launch IIS Express
+
+Gap in the market
+
+commands exist for
+
+    dotnet restore
+    dotnet run
+    dotnet test
+    dotnet new
+    dotnet test
+    dotnet pack
+
+propose a tool like `make` or NPM scripts
+
+Register Tasks
+Register Dependents
+Integrations with dotnet commands
+
+shouldn't have things for 'migrate'
+
+
+    
+
 
 Links to source code
