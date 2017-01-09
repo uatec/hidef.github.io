@@ -103,13 +103,21 @@ environment variables
 
 aspnet?
 
-{
-  "server.urls": "http://localhost:60000;http://localhost:60001"
-}
+Recommended Way. Bind whole URL.
 
-or PORT=8880
-.UseUrls($"http://0.0.0.0:{PORT}")
+    {
+        "server.urls": "http://localhost:60000;http://localhost:60001"
+    }
 
+12 Factor Way. Bind individual port.
+
+    .UsePort(PORT)
+
+    public static IWebHostBuilder UsePort(this IWebHostBuilder builder, int port)
+    {
+        builder.UseUrls($"http://*:{port}");
+        return builder;
+    }
 ## VIII. Concurrency
 Scale out via the process model
 
