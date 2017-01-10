@@ -33,4 +33,4 @@ It is a managers role, or that of a self managing team, to act like the schedule
 
 ---
 
-I hope that thinking about thinking about these familiar concepts in different ways may help us appreciate the nuances of both, and may be also gain a bit of understanding for responsibilities that might be outside our own realm.
+I hope that thinking about these familiar concepts in different ways may help us appreciate the nuances of both, and may be also gain a bit of understanding for responsibilities that might be outside our own realm.

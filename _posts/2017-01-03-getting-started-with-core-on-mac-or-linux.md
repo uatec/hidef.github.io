@@ -187,7 +187,7 @@ Now we can create an application to consume this package.
 
 One of the beauties of a Unix environment is that you don't need to create complicated Windows Services with an installer and a framework like TopShelf (much respect to TopShelf, but it's filling a gap that should never have existed).
 
-A service can be a simple console application. You can run it on the console you self to test it, or you can run it using `upstart` in Ubuntu or inside a docker container in exactly the same way.
+A service can be a simple console application. You can run it on the console yourself to test it, or you can run it using `upstart` in Ubuntu or inside a docker container in exactly the same way.
 
 So in a new directory for a new project:
 

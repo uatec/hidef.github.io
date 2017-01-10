@@ -12,7 +12,7 @@ title: "HiDef Software"
 description: "HiDef Software provides bold technical consulting on a range of IT and software related matters."
 
 # Tagline near the site title
-tagline: "Thoughts, ideas and awesome software."
+tagline: "Thoughts, innovation and awesome software."
 
 # The subpath of your site, e.g. /blog, for generating urls
 baseurl:
@@ -41,7 +41,7 @@ disqus: hidef
 
 # Author information - author info at the bottom of the post
 author_name: "Robert Stiff"
-author_bio: "Robert is a software engineer, speaker and thinker working with IT focussed clients to build great technology and make it work for everyone."
+author_bio: "Robert is a software engineer and speaker working with IT focussed clients to build great technology and make it work for everyone."
 author_url:  "https://www.hidefsoftware.co.uk"
 author_location: "London, United Kingdom"
 # author_image: /images/authorimage.png

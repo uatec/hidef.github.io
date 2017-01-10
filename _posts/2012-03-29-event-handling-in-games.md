@@ -6,7 +6,7 @@ tags: ["gamedev"]
 date: 2012-03-29
 ---
 
-Being predominantly an applications programmer, I have a different take on things that people in the games dev area might. Event handling is something that one might do quite differently in many different situations. Here are the ideas I've had and the pros and cons.
+Being predominantly an applications programmer, I have a different take on things that people in the games development area might. Event handling is something that one might do quite differently in many different situations. Here are the ideas I've had and the pros and cons.
 
 <!--more-->
 
@@ -25,9 +25,9 @@ The most common use of event handling that I have seen in games, is just handlin
 
 In a simple game this is probably the easiest option as you don't have to think about it to go down this route. However as your game grows, you will be tied to doing **ALL** event work in any given update method, regardless of whether it requires immediate attention or not.
 
-I would probably put myself in favour of a **Messaging approach**, especially if you are doing any networking. If you can make your game a system which passes message around from component to component, then passing messages to a component on a remote system via networking is nothing new.
+I would probably put myself in favour of a **Messaging approach**, especially if you are doing any networking. If you can make your game a system which passes messages around from component to component, then passing messages to a component on a remote system via networking is nothing new.
 
-As such the next game that I work on, I intend to approach it as a messaging exercise to see if it as easy as I suspect to transition from a message based game engine to a remote-messaging based game engine (networking).
+As such, the next game that I work on I intend to approach it as a messaging exercise to see if it as easy as I suspect to transition from a message based game engine to a remote-messaging based game engine (networking).
 
 Does anybody have a different view on it? Does anybody do anything else?
 

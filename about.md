@@ -5,13 +5,13 @@ title: About HiDef Software
 ---
 <h2>Who am I?</h2>
 
-<p>I have been programming as long as I can remember, back when screens and have more than 10 years of professional experience working with small and large businesses.</p>
+<p>I have been programming as long as I can remember and have more than 10 years of professional experience working with small and large businesses.</p>
 
 <p>This experience has taught me why patterns and practices like Microservices and Continuous Delivery exist and why we need them.</p>
 
 <h2>What can I offer?</h2>
 
-<p>Need help with your buzzwords? ReST, Microservices, Continuous Delivery, DevOps? Do you want to improve on common technology problems like stability, velocity, reliability? You want to review your architecture and practices?</p>
+<p>Do you need help with your buzzwords? ReST, Microservices, Continuous Delivery, DevOps? Do you want to improve on common technology problems like stability, velocity, reliability? Or maybe you want to review your architecture and practices?</p>
 
 <h2>Get in touch</h2>
 <div class="social-links" style="border-bottom: 0px; padding-top: 0.83em; padding-bottom: 0.83em">

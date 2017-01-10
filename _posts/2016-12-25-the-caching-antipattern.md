@@ -30,7 +30,7 @@ Here are some of the mistakes I have seen and what we should to differently.
 
 When you know for a fact that your dependencies are so slow they are unusable so you don't even try at run time. Pre-populating a cache as your application starts up rather than querying your dependent service is just admitting that your dependency is not fit for purpose. If it's a 3rd party service then maybe there is nothing you can do about that, but all too often this technique is used to avoid having to make your services actually fit for purpose.
 
-The problem with caching like this is that it extends application startup times, making scaling and failure recovery or even non-viable.
+The problem with caching like this is that it extends application startup times, making scaling and failure recovery hard or even non-viable.
 
 And even if you are okay with having a service that is slow to start or restart (which you shouldn't be) it results in a cache which bares no relation to the nature of the data or your service's usage patterns. A simple cache expiry policy would be meaningless here, as this pattern explicitly exists to avoid ever hitting your dependencies again. 
 
@@ -42,19 +42,19 @@ From that point on, the fact that their service is slow is hidden. There is no r
 
 ### Integrated Cache
 
-What's the S in SOLID? Single Responsibility. If your caching capability is integrated directly in to your service layer and you can't run without it you're definitely in breach of this principle. It's not my my place extol the virtues of this principle here.
+What's the S in SOLID? Single Responsibility. If your caching capability is integrated directly into your service layer and you can't run without it you're definitely in breach of this principle. It's not my place to extol the virtues of this principle here.
 
 ### Caching everything
 
-Blindly applying caching to every external call to ensure responsiveness without a thought for he implications. Even worse, this approach can result in developers and operators not even knowing that caching is occurring and making assumptions about the reliability of the underlying services that are simply not true.
+Blindly applying caching to every external call to ensure responsiveness without a thought for the implications. Even worse, this approach can result in developers and operators not even knowing that caching is occurring and making assumptions about the reliability of the underlying services that are simply not true.
 
 ### Recaching
 
 Caching everything, or even just caching a lot, can result in caches that cache caches which cache caches.
 
-On one end of the spectrum, this might result all internal caches expiring shortly before the very front cache, resulting in a huge waste of time and resources to operate layers and layers of caching which are never used.
+On one end of the spectrum, this might result in all internal caches expiring shortly before the very front cache, resulting in a huge waste of time and resources to operate layers and layers of caching which are never used.
 
-At the other then, it can result effectively summing the cache expiry time of all caches involved, so 10 layers of 30 minutes caches can result in a system serving data which is 5 hours old. How's *that* for counterintuitive?
+At the other end, it can result in effectively summing the cache expiry time of all caches involved, so 10 layers of 30 minutes caches can result in a system serving data which is 5 hours old. How's *that* for counterintuitive?
 
 ### Unflushable Cache
 
@@ -62,7 +62,7 @@ Occasionally cache implementations may back on to data stores like Redis which h
 
 Other implementations, such as hand cranks in memory caches or even caches provided by mainstream frameworks will not expose any cache management tools. This leaves ops with the only option, to restart the service to flush the memory. (Or worse, know enough about the cache implementation to find it's location on file system and clear it out manually.)
 
-I have seen releases that have taken hours longer than necessary while different members of the team tried to track down cache after cache, flush them with a restart or wait for expiry before moving on to the next layer. All the time with a system taken offline because the system cannot be said to be consist within itself.
+I have seen releases that have taken hours longer than necessary while different members of the team tried to track down cache after cache, flush them with a restart or wait for expiry before moving on to the next layer. All the time with a system taken offline because the system cannot be said to consist within itself.
 
 ## The implications
 
@@ -70,7 +70,7 @@ Caching data has implications which these mistakes can accentuate as well as new
 
 Deploying to a heavily cached system can be extremely time consuming while you wait for caches to expire or have to bust every cache you can find. Even in systems such as some CDNs I have worked with which serve traffic to tens of percent of the Internet and are thought to be the leaders in content delivery, flushing content and configuration caches globally can take up to two hours. This doesn't need to be the case ([Fastly](https://www.fastly.com/products/instant-purging) can purge their cache in 150ms), and it results in confusion (is the new data being served yet?).
 
-The natural response is to come up with a workaround, usually some of of cache busting. Let's just think about that. A work around for a feature that you just implemented. Think about that, time, effort and cognitive load just to compensate for time, effort and cognitive load you just spent on caching in the first place.
+The natural response is to come up with a workaround, usually some cache busting. Let's just think about that. A work around for a feature that you just implemented. Think about the time, effort and cognitive load just to compensate for time, effort and cognitive load you just spent on caching in the first place.
 
 Debugging a cached system also becomes a challenge as being up to your neck in a tricky debugging session will end up with unrelated things being missed or forgotten about. 3 hours of confusion later you realise that you haven't actually been testing any of the changes you have been making.
 
@@ -78,11 +78,11 @@ Debugging a cached system also becomes a challenge as being up to your neck in a
 
 ### Don't cache!
 
-Okay, sometimes caching is your only option. You're on the web and it's happening whether you like it or not. But even in this case there are options other than a simply slapping on ```Cache-Control: max-age=xxx```. 
+Okay, sometimes caching is your only option. You're on the web and it's happening whether you like it or not. But even in this case there are options other than simply slapping on ```Cache-Control: max-age=xxx```. 
 
 ### Know your data
 
-You should know when your data was last modified at the very least. Now you can make use of the ```If-Modified-Since``` header. Return 304-not-modified if the data hasn't changed. Now you can intelligently utilise the the client's caching capability without sacrificing visibility and control. Using this header will let you serve new content instantly and also cache indefinitely. The best of both worlds. Taking it one step further, if you're able to version you data (or just generate a hash of your response), you can make use of [etags](https://en.wikipedia.org/wiki/HTTP_ETag) and still interact with the client and apply appropriate logic without the latency related to data transfer.
+You should know when your data was last modified at the very least. Now you can make use of the ```If-Modified-Since``` header. Return 304-not-modified if the data hasn't changed. Now you can intelligently utilise the the client's caching capability without sacrificing visibility and control. Using this header will let you serve new content instantly and also cache indefinitely. The best of both worlds. Taking it one step further, if you're able to version your data (or just generate a hash of your response), you can make use of [etags](https://en.wikipedia.org/wiki/HTTP_ETag) and still interact with the client and apply appropriate logic without the latency related to data transfer.
 
 ### Optimise for performance, don't hide bad performance
 
