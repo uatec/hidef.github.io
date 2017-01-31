@@ -37,7 +37,7 @@ navigation:
   url: /archive/
 
 # The shortname for your Disqus site to enable comments.
-disqus: hidef
+#disqus: hidef
 
 # Author information - author info at the bottom of the post
 author_name: "Robert Stiff"
