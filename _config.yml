@@ -41,7 +41,7 @@ disqus: hidef
 
 # Author information - author info at the bottom of the post
 author_name: "Robert Stiff"
-author_bio: "Robert is a software engineer and speaker working with IT focussed clients to build great technology and make it work for everyone."
+author_bio: "Robert is a software engineer and speaker working with IT focussed clients to build great technology and make it work for everyone. <br /><br />I love talking to other engineers at any time, for any reason: please, drop me an email, [<a href='mailto:website.hidefsoftware.co.uk'>website@hidefsoftware.co.uk</a>]. I respond to as many as I can, time permitting. Nothing makes me happier than helping people out."
 author_url:  "https://www.hidefsoftware.co.uk"
 author_location: "London, United Kingdom"
 # author_image: /images/authorimage.png
