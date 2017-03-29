@@ -18,6 +18,15 @@ FortressCraft for a new age. The original FortressCraft was written to get the b
 
 FortressCraft is a video game released on Xbox Live Indie Games on April 8, 2011. FortressCraft cites Minecraft, Infiniminer and Dwarf Fortress as direct inspirations for the design aspect of the game. The game utilizes textured voxels to simulate landscapes, traditionally reminiscent of other titles in the genre.
 
+### [TacticsForever](http://tacticsforever.com/)
+
+`BUILD IT, TEST IT, UPGRADE IT, LAUNCH IT!`
+
+Available on Steam, TacticsForever lets you design spaceships and send them out on the internet to do battle.
+
+Using modern technologies on the back end, such as Docker and .Net Core and Circle CI, we can guarantee fast, reliable delivery of new game features.
+
+
 ### Colour Jumper 2
 
 Colour Jumper 2 is a framework for writing turn based/tile based games. Using chess as a starting point, Colour Jumper 2, allows you to create the entities which populate the game, and manage the game flow.
