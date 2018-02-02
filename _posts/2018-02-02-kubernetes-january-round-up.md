@@ -36,7 +36,7 @@ As mentioned, Kubernetes' DNS service is used for internal service discovery. If
 
 #### Linkerd
 https://linkerd.io/
-Tried and tested by the likes of Monzo, Linkerd can transparently handle retries, timeouts, rate-limiting, circuit breaking and the like, removing the need for tangled resilience implementations with Polly.net or custom code. It even has multiple service discovery plugins, for example using consul to resolve service hosts directly, removing the need for internal load balancers.
+Tried and tested by the likes of Monzo, Linkerd can transparently handle retries, time outs, rate-limiting, circuit breaking and the like, removing the need for tangled resilience implementations with Polly.net or custom code. It even has multiple service discovery plugins, for example using consul to resolve service hosts directly, removing the need for internal load balancers.
 
 #### Istio
 https://istio.io/
@@ -44,7 +44,7 @@ More than a single service, Istio is an entire service mesh project. Combining r
 
 ### AWS ELB Config Options
 https://gist.github.com/mgoodness/1a2926f3b02d8e8149c224d25cc57dc1
-We live in an AWS world. Most AWS configurations provision ELBs to expose services outside the cluster. Here is a handy cheat sheet for configuring your load balancer, e.g. internal only, SSL certs, timeouts.
+We live in an AWS world. Most AWS configurations provision ELBs to expose services outside the cluster. Here is a handy cheat sheet for configuring your load balancer, e.g. internal only, SSL certs, time outs.
 
 ### Docker for Mac /w Kubernetes
 https://blog.alexellis.io/docker-for-mac-with-kubernetes/
