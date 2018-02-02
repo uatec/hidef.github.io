@@ -51,9 +51,9 @@ https://blog.alexellis.io/docker-for-mac-with-kubernetes/
 Now Docker for Mac has Kubernetes support built in Alex Ellis, author of OpenFaas, compares it to some of the other options for Kubernetes developer tooling, and a quick view of running OpenFaas (a kubernetes based, vendor agnostic, alternative to Lambda)
 
 ### Docker for Windows /w Kubernetes
-https://www.hanselman.com/blog/HowToSetUpKubernetesOnWindows10WithDockerForWindowsAndRunASPNETCore.aspx
+https://goo.gl/LUTFjS
 Thanks to Mr. Hanselman for running through the new release of Docker for Windows with one-click Kubernetes built in, as well as a flying example of the Kubernetes Dashboard, and deploying ASP.NET Core in to Kubernetes. 
 
 ---
 
-If you want to contribute anything to this list, or my next round up, drop me an email at roundup@hidefsoftware.co.uk.
+If you want to contribute anything to this list, or my next round up, drop me an email at [roundup@hidefsoftware.co.uk](mailto:roundup@hidefsoftware.co.uk).
