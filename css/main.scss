@@ -663,6 +663,16 @@ a.archive-top-link:hover {
     text-transform: uppercase; 
 }
 
+.widget-author-avatar {
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 100px;
+    float: left;
+    margin-right: 30px;
+    width: 100px;
+}
+
 .widget input[type="text"],
 .widget input[type="email"],
 .widget input[type="url"],
