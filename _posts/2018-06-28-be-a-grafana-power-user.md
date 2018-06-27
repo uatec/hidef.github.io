@@ -38,7 +38,7 @@ It now appears that our timings are very spiky and unreliable, which might not b
 
 A gap in latency stats does NOT mean that the latency was 0. It means that no data was available. The gaps in the visualisation tell us that we are not able to answer any questions during that period.
 
-Omitting [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) from timing graphs, and rendering with the [Points draw mode](http://docs.grafana.org/features/panels/graph/#draw-modes) highlights the present and absense of data much more clearly.
+Omitting [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) from timing graphs, and rendering with the [Points draw mode](http://docs.grafana.org/features/panels/graph/#draw-modes) highlights the present and absence of data much more clearly.
 
 ![Timings with missing left blank](/images/posts/2018-06-28-be-a-grafana-power-user/transformnull-disabled.png)
 
