@@ -3,7 +3,7 @@ title: "Kubernetes February Round Up"
 author: Robert Stiff
 layout: post
 tags: ["kubernetes"]
-date: 2018-02-02
+date: 2018-03-03
 ---
 
 Another month is passed, and it seems like activity around Kubernetes is accelerating exponentially.
