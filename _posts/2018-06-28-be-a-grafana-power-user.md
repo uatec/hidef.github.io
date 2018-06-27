@@ -10,7 +10,7 @@ This is a collection of tips and suggestions to make sure that your use of these
 
 <!--more-->
 
-## Summarise all graphs by a templated interval to allow easy control of data granularity
+## 1. Summarise all graphs by a templated interval to allow easy control of data granularity
 
 Grafana is pretty good at trying to guess the interval at which you want to summarise your data, but it doesn't always get it right.
 
@@ -26,7 +26,7 @@ An overridden interval of 1 hour
 
 Trends in the data can be made more obvious by viewing it at the right level of detail.
 
-## Never transform null timings to zero
+## 2. Never transform null timings to zero
 
 In a sparse data set, it's tempting to guarantee that your data does not have huge gaps in it. When counting a stat, e.g. requests per second, a gap in the data means that you got no requests. In this case applying [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) makes sense, filling in the gaps in the visualisation.
 
@@ -38,21 +38,33 @@ It now appears that our timings are very spiky and unreliable, which might not b
 
 A gap in latency stats does NOT mean that the latency was 0. It means that no data was available. The gaps in the visualisation tell us that we are not able to answer any questions during that period.
 
-Omitting [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) from timing graphs, and rendering with the [Points draw mode](http://docs.grafana.org/features/panels/graph/#draw-modes) highlights the present and absence of data much more clearly.
+Omitting [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) from timing graphs highlights the present and absence of data much more clearly.
 
 ![Timings with missing left blank](/images/posts/2018-06-28-be-a-grafana-power-user/transformnull-disabled.png)
 
 Lack of data should not be hidden. Think carefully before transforming data to ensure that the transformation does not obscure the meaning of the data. Graphs are about making information visible, not hiding it.
 
-## On sparse timing data, datapoints can appear as 0 width spots and be invisible, use small spots to make them visible again
-  "https://www.dropbox.com/s/r9rfyh74zyylsqk/Screenshot%202018-06-27%2016.03.48.png?dl=0
-  https://www.dropbox.com/s/b87u0cy7ta83e1b/Screenshot%202018-06-27%2016.03.57.png?dl=0"
+## 3. Use Points Draw Mode to make sparse data more visible
 
-## Always transformNull(0) (if you are going to) before movingAvg or movingMedian, otherwise the transformation will happen to the average, not the data, and it wont average with 0
-  "https://www.dropbox.com/s/2txupy3gssfy0ud/Screenshot%202018-06-27%2016.28.38.png?dl=0"
+On sparse data, data points can appear as lines of zero length and be completely invisible. Enable the [Points draw mode](http://docs.grafana.org/features/panels/graph/#draw-modes) to make isolated stats stand out.
 
-## Always specify the unit of time, e.g. summarise(), movingAverage(), the default is datapoints.
-  "On sparse data, the last N datapoints may be 100 seconds or 100 minutes, you don't know"
+I recommend a width of 1 to ensure that the points merely point the data out and do not blend together, hiding the true data.
+
+![Sparse data rendered with Point Draw Mode](/images/posts/2018-06-28-be-a-grafana-power-user/sparedatawithpoints.png)
+
+## 4. Applying transformNull(0) before aggregation changes the meaning of the aggregation
+
+Always [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) (if you are going to) before [movingAvg()](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.movingAverage), [movingMedian()](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.movingMedian), or other aggregate functions, otherwise the aggregations will not include the transformed data. 
+ 
+![The difference between transforming first, or aggregating first](/images/posts/2018-06-28-be-a-grafana-power-user/transformfirst-thenaggregate.png)
+
+TODO: Recheck
+
+## 5. Always specify your units
+
+Always specify the unit of time, e.g. summarise(), movingAverage(), the default is the number of data points included.
+
+On sparse data, the last N datapoints may be 100 seconds or 100 minutes, you don't know
 
 ## Standardise your stats, then use repeated Panels for repeated stat types (e.g. for each dependency and it's timings)
 
@@ -74,3 +86,8 @@ Lack of data should not be hidden. Think carefully before transforming data to e
 
 ## Hide Series With No Data
   "https://www.dropbox.com/s/8kxtw6857wflz7v/Screenshot%202018-06-27%2015.58.57.png?dl=0"
+
+
+
+
+http://graphite.readthedocs.io/en/latest/functions.html
