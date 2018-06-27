@@ -24,14 +24,23 @@ Creating a [template variable](http://docs.grafana.org/reference/templating/) to
 
 Trends in the data can be made more obvious by viewing it at the right level of detail.
 
-## Only use transformNull(0) on counts, it is misleading on timings
+## Never transform null timings to zero
 
-  - transformNull(0) on timing implied 0 timing
-    "https://www.dropbox.com/s/jzxfblm7sjvttij/Screenshot%202018-06-27%2016.01.04.png?dl=0
-    data actually looks like:
-    https://www.dropbox.com/s/xa2qokbylg7sw3e/Screenshot%202018-06-27%2016.01.47.png?dl=0"
-  - Side By Side allows you to see that lack of data mean "don't know"
-    "https://www.dropbox.com/s/coz0m8d3uw28njl/Screenshot%202018-06-27%2016.02.22.png?dl=0"
+In a sparse data set, it's tempting to guarantee that your data does not have huge gaps in it. When counting a stat, e.g. requests per second, a gap in the data means that you got no requests. In this case applying [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) makes sense, filling in the gaps in the visualisation.
+
+Applying this function to timings, however is positively misleading. It would give the impression that, for periods of time, the timings were 0. 
+
+![Timings with missing data transformed to 0](/images/posts/2018-06-28-be-a-grafana-power-user/transformnull-enabled.png)
+
+It now appears that our timings are very spiky and unreliable, which might not be the case.
+
+A gap in latency stats does NOT mean that the latency was 0. It means that no data was available. The gaps in the visualisation tell us that we are not able to answer any questions during that period.
+
+Omitting [transformNull(0)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.transformNull) from timing graphs, and rendering with the [Points draw mode](http://docs.grafana.org/features/panels/graph/#draw-modes) highlights the present and absense of data much more clearly.
+
+![Timings with missing left blank](/images/posts/2018-06-28-be-a-grafana-power-user/transformnull-disabled.png)
+
+Lack of data should not be hidden. Think carefully before transforming data to ensure that the transformation does not obscure the meaning of the data. Graphs are about making information visible, not hiding it.
 
 ## On sparse timing data, datapoints can appear as 0 width spots and be invisible, use small spots to make them visible again
   "https://www.dropbox.com/s/r9rfyh74zyylsqk/Screenshot%202018-06-27%2016.03.48.png?dl=0
