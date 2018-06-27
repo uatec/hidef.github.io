@@ -16,10 +16,12 @@ Grafana is pretty good at trying to guess the interval at which you want to summ
 
 Creating a [template variable](http://docs.grafana.org/reference/templating/) to control the interval of a [summarize(...)](http://graphite.readthedocs.io/en/latest/functions.html#graphite.render.functions.summarize) function on all graphs on your dashboard will let you control the granularity of an entire dashboard with ease.
 
-### The default interval (1 minute)
+The default interval (1 minute)
+
 ![1 minute interval](/images/posts/2018-06-28-be-a-grafana-power-user/interval-1m.png)
 
-### An overridden interval of 1 hour
+An overridden interval of 1 hour
+
 ![1 hour interval](/images/posts/2018-06-28-be-a-grafana-power-user/interval-1h.png)
 
 Trends in the data can be made more obvious by viewing it at the right level of detail.
